@@ -75,6 +75,10 @@ function blob_fixup() {
             "${PATCHELF}" --add-needed libaudioparams_shim.so "${2}"
             sed -i 's/str_parms_get_str/str_parms_get_mod/g' "${2}"
             ;;
+        vendor/lib*/liboemcrypto.so)
+            "${PATCHELF}" --add-needed liboemcrypto_shim.so "${2}"
+            sed -i 's/fopen/kopen/g' "${2}"
+            ;;
         vendor/lib*/libsensorlistener.so)
             "${PATCHELF}" --add-needed libsensorndkbridge_shim.so "${2}"
             ;;

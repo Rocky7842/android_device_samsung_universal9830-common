@@ -82,7 +82,7 @@ PRODUCT_PACKAGES += \
 
 # DRM
 PRODUCT_PACKAGES += \
-    android.hardware.drm@1.3.vendor:32 \
+    android.hardware.drm@1.4.vendor:32 \
     android.hardware.drm-service.clearkey
 
 # Dynamic Partitions
@@ -326,6 +326,7 @@ PRODUCT_PACKAGES += \
 # Shims
 PRODUCT_PACKAGES += \
     libaudioparams_shim \
+    liboemcrypto_shim \
     libsensorndkbridge_shim
 
 # Shipping API level
