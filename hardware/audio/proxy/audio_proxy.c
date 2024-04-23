@@ -4070,9 +4070,9 @@ void *proxy_create_capture_stream(void *proxy, int type, int usage, void *config
             apstream->sound_card = PRIMARY_CAPTURE_CARD;
             apstream->sound_device = get_pcm_device_number(aproxy, apstream);
 #ifdef SUPPORT_QUAD_MIC
-            if (((is_active_usage_CPCall(aproxy) && aproxy->active_capture_ausage != AUSAGE_CALL_FORWARDING_PRIMARY
-                && aproxy->active_capture_ausage != AUSAGE_SPECTRO)
-                || apstream->stream_usage == AUSAGE_CAMCORDER)
+            if (is_active_usage_CPCall(aproxy)
+                && aproxy->active_capture_ausage != AUSAGE_CALL_FORWARDING_PRIMARY
+                && aproxy->active_capture_ausage != AUSAGE_SPECTRO
                 && is_quad_mic_device(aproxy->active_capture_device)) {
                 apstream->pcmconfig = pcm_config_primary_quad_mic_capture;
                 ALOGE("proxy-%s: Primary reconfig as Quad-Mic", __func__);
@@ -4589,9 +4589,9 @@ int proxy_reconfig_capture_usage(void *proxy_stream, int type, int usage)
             apstream->sound_device = get_pcm_device_number(aproxy, apstream);
 
 #ifdef SUPPORT_QUAD_MIC
-            if (((is_active_usage_CPCall(aproxy) && aproxy->active_capture_ausage != AUSAGE_CALL_FORWARDING_PRIMARY
-                && aproxy->active_capture_ausage != AUSAGE_SPECTRO)
-                || apstream->stream_usage == AUSAGE_CAMCORDER)
+            if (is_active_usage_CPCall(aproxy)
+                && aproxy->active_capture_ausage != AUSAGE_CALL_FORWARDING_PRIMARY
+                && aproxy->active_capture_ausage != AUSAGE_SPECTRO
                 && is_quad_mic_device(aproxy->active_capture_device)) {
                 apstream->pcmconfig = pcm_config_primary_quad_mic_capture;
                 ALOGE("proxy-%s: Primary reconfig as Quad-Mic", __func__);
