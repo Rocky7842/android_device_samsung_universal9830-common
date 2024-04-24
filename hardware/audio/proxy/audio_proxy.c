@@ -3890,6 +3890,12 @@ bool proxy_select_best_playback_pcmconfig(
      * 2: 48KHz, 24bit
      */
     if (cur_apstream->stream_type == ASTREAM_PLAYBACK_COMPR_OFFLOAD) {
+        // HACK: Re-select pcmconfig if passed value is default 0.
+        if (compr_upscaler == 0) {
+            if (cur_apstream->requested_format == AUDIO_FORMAT_PCM_SUB_8_24_BIT)
+		compr_upscaler = cur_apstream->requested_sample_rate == UHQA_MEDIA_SAMPLING_RATE ? 1 : 2;
+        }
+
         if (compr_upscaler == 2)
             cur_apstream->pcmconfig = pcm_config_deep_playback;
         else if (compr_upscaler == 1)
